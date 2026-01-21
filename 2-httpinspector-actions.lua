@@ -26,8 +26,6 @@ if type(plugin.init) ~= "function" then
         return
     end
 
-    local orig_init = plugin.init
-
     plugin.onStartHttpInspector = function(self)
         if type(self.start) == "function" and not self:isRunning() then
             self:start()
