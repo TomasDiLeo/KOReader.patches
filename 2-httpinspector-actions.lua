@@ -21,10 +21,6 @@ do
 end
 
 local function patchHTTPInspector(plugin)
-if type(plugin.init) ~= "function" then
-        logger.warn("userpatch/httpinspector:init: plugin has no init() to wrap")
-        return
-    end
 
     plugin.onStartHttpInspector = function(self)
         if type(self.start) == "function" and not self:isRunning() then
