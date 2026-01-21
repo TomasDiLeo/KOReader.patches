@@ -28,15 +28,6 @@ if type(plugin.init) ~= "function" then
 
     local orig_init = plugin.init
 
-    -- Add dispatcher actions and corresponding event handlers
-    plugin.onDispatcherRegisterActions = function(self)
-        local Dispatcher = require("dispatcher")
-        local _ = require("gettext")
-        Dispatcher:registerAction("httpinspector_start", { category="none", event="StartHttpInspector", title=_("Start HTTP inspector"), general=true, })
-        Dispatcher:registerAction("httpinspector_stop", { category="none", event="StopHttpInspector", title=_("Stop HTTP inspector"), general=true, })
-        Dispatcher:registerAction("httpinspector_toggle", { category="none", event="ToggleHttpInspector", title=_("Toggle HTTP inspector"), general=true, separator=true, })
-    end
-
     plugin.onStartHttpInspector = function(self)
         if type(self.start) == "function" and not self:isRunning() then
             self:start()
